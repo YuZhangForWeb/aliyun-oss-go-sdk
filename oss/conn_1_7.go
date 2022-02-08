@@ -84,7 +84,7 @@ func (conn Conn) doRequest(method string, uri *url.URL, canonicalizedResource st
 	}
 
 	if conn.ctx != nil {
-		req.WithContext(conn.ctx)
+		req = req.WithContext(conn.ctx)
 	}
 
 	resp, err := conn.client.Do(req)
