@@ -24,8 +24,9 @@ type Conn struct {
 
 // WithContext support go1.7
 func (conn Conn)WithContext(ctx context.Context) Conn  {
-	conn.ctx = ctx
-	return conn
+	c := conn // do a copy
+	c.ctx = ctx
+	return c
 }
 
 func (conn Conn) doRequest(method string, uri *url.URL, canonicalizedResource string, headers map[string]string,
@@ -163,7 +164,7 @@ func (conn Conn) DoURL(method HTTPMethod, signedURL string, headers map[string]s
 
 
 	if conn.ctx != nil {
-		req.WithContext(conn.ctx)
+		req = req.WithContext(conn.ctx)
 	}
 
 	resp, err := conn.client.Do(req)
