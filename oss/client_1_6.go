@@ -2,7 +2,10 @@
 
 package oss
 
-import "net/http"
+import (
+	"net/http"
+	"io"
+)
 
 // Client OSS client
 type Client struct {

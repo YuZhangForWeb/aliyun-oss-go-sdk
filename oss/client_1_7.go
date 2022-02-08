@@ -5,6 +5,7 @@ package oss
 import (
 	"context"
 	"net/http"
+	"io"
 )
 
 // Client OSS client
